@@ -13,7 +13,7 @@ def test_get_home():
 
 
 def test_post_home():
-    response = client.post("/") # requests.post("") # python requests
-    assert response.text != "<h1>Hello world</h1>"
+    response = client.post("/")
     assert response.status_code == 200
-    assert  "text/html" in response.headers['content-type']
+    assert response.json() == {"message": "FastAPI is running.."}
+    assert "application/json" in response.headers["content-type"]
