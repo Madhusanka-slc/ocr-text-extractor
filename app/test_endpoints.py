@@ -1,6 +1,10 @@
-
+import shutil
+import time
+import io
 from fastapi.testclient import TestClient
-from app.main import app
+from app.main import app, BASE_DIR, UPLOAD_DIR, get_settings
+
+from PIL import Image, ImageChops
 
 client = TestClient(app)
 
@@ -17,3 +21,14 @@ def test_post_home():
     assert response.status_code == 200
     assert response.json() == {"message": "FastAPI is running.."}
     assert "application/json" in response.headers["content-type"]
+
+
+
+def test_echo_upload():
+    img_saved_path = BASE_DIR / "images"
+
+    for path in img_saved_path.glob("*"):
+        response = client.post("/img-echo/", files={"file": open(path,'rb')})
+        assert response.status_code == 200
+        assert response.json() == {"message": "FastAPI is running.."}
+        assert "application/json" in response.headers["content-type"]

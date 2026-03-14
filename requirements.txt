@@ -11,3 +11,4 @@ python-multipart
 pillow
 pytesseract
 httpx
+pydantic-settings
