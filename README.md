@@ -68,7 +68,3 @@ Run tests:
 ```bash
 pytest
 ```
-
----
-
-This README captures the OCR extraction capabilities and production-ready features from your course. Let me know if you'd like to adjust any details!
